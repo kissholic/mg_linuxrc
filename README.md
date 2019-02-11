@@ -1,2 +1,5 @@
 # mg_vimrc
-This is a personal vim configuration
+This project is my personal linux configuration,including
+  vimrc
+  bashrc
+  to be continued...
