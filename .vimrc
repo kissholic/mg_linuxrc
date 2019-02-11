@@ -1,17 +1,17 @@
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "Nerdtree自动开启/关闭
 "autocmd vimenter * NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'altercation/vim-colors-solarized'
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'myusuf3/numbers.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -27,8 +27,6 @@ set tabstop=4
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
-" 总是显示状态栏
-set laststatus=2
 " 显示光标当前位置
 set ruler
 " 开启行号显示
@@ -52,7 +50,6 @@ set nowrap
 set vb t_vb=
 
 set background=dark
-colorscheme solarized
 
 " 开启语法高亮功能
 syntax enable
@@ -61,8 +58,7 @@ syntax on
 
 
 
-let mapleader=","
-let g:Powerline_colorscheme='solarized256'
+let mapleader=" "
 " 随 vim 自启动
 let g:indent_guides_enable_on_vim_startup=1
 " 从第二层开始可视化显示缩进
@@ -70,17 +66,6 @@ let g:indent_guides_start_level=2
 " 色块宽度
 let g:indent_guides_guide_size=1
 
-" 快捷键 i 开/关缩进可视化
-:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
-" *.cpp 和 *.h 间切换
-nmap <silent> <Leader>sw :FSHere<cr>
-" 显示/隐藏 MiniBufExplorer 窗口
-map <Leader>bl :MBEToggle<cr>
-" buffer 切换快捷键
-map <C-Tab> :MBEbn<cr>
-map <C-S-Tab> :MBEbp<cr>
-nmap LB 0
-nmap LE $
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
@@ -89,14 +74,12 @@ nmap <Leader>p "+p
 nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
-" 定义快捷键保存所有窗口内容并退出 vim
-nmap <Leader>WQ :wa<CR>:q<CR>
 " 不做任何保存，直接退出 vim
 nmap <Leader>Q :qa!<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 " 依次遍历子窗口
-nnoremap nw <C-W><C-W>
+nnoremap <C><Tab> <C-W><C-W>
 " 跳转至右方的窗口
 nnoremap <Leader>lw <C-W>l
 " 跳转至左方的窗口
@@ -107,6 +90,4 @@ nnoremap <Leader>kw <C-W>k
 nnoremap <Leader>jw <C-W>j
 " 定义快捷键在结对符之间跳转
 nmap <Leader>M %
-
-
 
