@@ -2,6 +2,29 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "Nerdtree自动开启/关闭
 "autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 记住上次打开位置
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+function! AutoSwapLine(key)
+    if col(".") == 1 && a:key == "h"
+        execute "normal k$"
+    elseif col(".") == (col("$")-1) && a:key == "l"
+        execute "normal j0"
+    elseif col(".") == 1 && a:key == "l"
+        execute "normal j0"
+    else
+        if a:key == "h"
+            execute "normal gotoh"
+        else
+            execute "normal gotol"
+        endif
+    endif
+endfunction
+nnoremap gotoh h
+nnoremap gotol l
+nnoremap h :call AutoSwapLine("h")<CR>
+nnoremap l :call AutoSwapLine("l")<CR>
+        
 
 filetype off
 call plug#begin('~/.vim/plugged')
@@ -9,11 +32,15 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim'
-Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'myusuf3/numbers.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'yggdroot/indentline'
+ Plug 'itchyny/lightline.vim'
 call plug#end()
 filetype plugin indent on
+
+
 
 "backspace可删行
 set backspace=indent,eol,start
@@ -48,6 +75,13 @@ set wildmenu
 set nowrap
 " 静音
 set vb t_vb=
+" 竖向分屏
+set splitright
+" 可用鼠标
+set mouse=a  
+set mousehide
+" lightline可用
+set laststatus=2
 
 set background=dark
 
@@ -65,29 +99,38 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
 " 色块宽度
 let g:indent_guides_guide_size=1
+" 注释加一空格
+let g:NERDSpaceDelims = 1
+
+
+
 
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
-nmap <Leader>p "+p
+nnoremap <Leader>p "+p
 " 定义快捷键关闭当前分割窗口
-nmap <Leader>q :q<CR>
+nnoremap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>
 " 不做任何保存，直接退出 vim
-nmap <Leader>Q :qa!<CR>
+nnoremap <Leader>Q :qa!<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 " 依次遍历子窗口
-nnoremap <C><Tab> <C-W><C-W>
+nnoremap <Tab> <C-W><C-W>
 " 跳转至右方的窗口
-nnoremap <Leader>lw <C-W>l
+nnoremap <S-l> <C-W>l
 " 跳转至左方的窗口
-nnoremap <Leader>hw <C-W>h
+nnoremap <S-h> <C-W>h
 " 跳转至上方的子窗口
-nnoremap <Leader>kw <C-W>k
+nnoremap <S-k> <C-W>k
 " 跳转至下方的子窗口
-nnoremap <Leader>jw <C-W>j
-" 定义快捷键在结对符之间跳转
-nmap <Leader>M %
+nnoremap <S-j> <C-W>j
+
+noremap j gj
+noremap k gk
+
+" 快速注释
+nnoremap <Leader>c <Leader>ci
 
