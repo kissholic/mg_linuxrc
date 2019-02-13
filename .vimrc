@@ -10,7 +10,7 @@ function! AutoSwapLine(key)
         execute "normal k$"
     elseif col(".") == (col("$")-1) && a:key == "l"
         execute "normal j0"
-    elseif col(".") == 1 && a:key == "l"
+    elseif col("$") == 1 && a:key == "l"
         execute "normal j0"
     else
         if a:key == "h"
