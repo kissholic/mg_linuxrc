@@ -36,7 +36,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
- Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'valloric/youcompleteme'
 call plug#end()
 filetype plugin indent on
 
