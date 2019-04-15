@@ -24,6 +24,12 @@ nnoremap gotoh h
 nnoremap gotol l
 nnoremap h :call AutoSwapLine("h")<CR>
 nnoremap l :call AutoSwapLine("l")<CR>
+
+function! _compile()
+    exec "w"
+    exec '!python %'
+endfunction
+nnoremap <F9> :call _compile()<CR>
         
 
 filetype off
@@ -31,13 +37,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'davidhalter/jedi-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'itchyny/lightline.vim'
-Plug 'valloric/youcompleteme'
 call plug#end()
 filetype plugin indent on
 
@@ -83,8 +87,9 @@ set mouse=a
 set mousehide
 " lightline可用
 set laststatus=2
-
 set background=dark
+set nobackup
+set noswapfile
 
 " 开启语法高亮功能
 syntax enable
@@ -102,7 +107,6 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 " 注释加一空格
 let g:NERDSpaceDelims = 1
-
 
 
 
@@ -134,4 +138,3 @@ noremap k gk
 
 " 快速注释
 nnoremap <Leader>c <Leader>ci
-
