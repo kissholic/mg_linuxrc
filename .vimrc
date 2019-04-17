@@ -29,17 +29,25 @@ function! _compile()
     if expand('%:e') == "py"
         execute "w"
         execute "!python %"
-    elseif expand('%:e') == "cpp" || expand('%:e' == "cc")
+    elseif expand('%:e') == "cpp" || expand('%:e') == "cc"
         execute "w"
-        execute "!g++ % -o %< && ./%< < data"
+        execute "!g++ % -o %< && ./%<"
     elseif expand('%:e') == "c"
         execute "w"
-        execute "!gcc % -o %<"
-        execute "!./%< < data"
+        execute "!gcc % -o %< && ./%<"
+    elseif expand('%:e') == "cu"
+        execute "w"
+        execute "!nvcc % -o %< && ./%<"
     endif
 endfunction
 nnoremap <F9> :call _compile()<CR>
 
+function! _tatt()
+    if 1 == 2 || 1 == 1
+        echo "Hi"
+    endif
+endfunction
+nnoremap <F8> : call _tatt()<CR>
 
 
 filetype off
