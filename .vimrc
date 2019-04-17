@@ -26,11 +26,21 @@ nnoremap h :call AutoSwapLine("h")<CR>
 nnoremap l :call AutoSwapLine("l")<CR>
 
 function! _compile()
-    exec "w"
-    exec '!python %'
+    if expand('%:e') == "py"
+        execute "w"
+        execute "!python %"
+    elseif expand('%:e') == "cpp" || expand('%:e' == "cc")
+        execute "w"
+        execute "!g++ % -o %< && ./%< < data"
+    elseif expand('%:e') == "c"
+        execute "w"
+        execute "!gcc % -o %<"
+        execute "!./%< < data"
+    endif
 endfunction
 nnoremap <F9> :call _compile()<CR>
-        
+
+
 
 filetype off
 call plug#begin('~/.vim/plugged')
@@ -42,6 +52,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 filetype plugin indent on
 
