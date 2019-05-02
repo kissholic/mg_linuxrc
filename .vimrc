@@ -22,8 +22,8 @@ function! AutoSwapLine(key)
 endfunction
 nnoremap gotoh h
 nnoremap gotol l
-nnoremap h :call AutoSwapLine("h")<CR>
-nnoremap l :call AutoSwapLine("l")<CR>
+nnoremap <silent>h :call AutoSwapLine("h")<CR>
+nnoremap <silent>l :call AutoSwapLine("l")<CR>
 
 function! _compile()
     if expand('%:e') == "py"
