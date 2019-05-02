@@ -42,13 +42,6 @@ function! _compile()
 endfunction
 nnoremap <F9> :call _compile()<CR>
 
-function! _tatt()
-    if 1 == 2 || 1 == 1
-        echo "Hi"
-    endif
-endfunction
-nnoremap <F8> : call _tatt()<CR>
-
 
 filetype off
 call plug#begin('~/.vim/plugged')
@@ -60,7 +53,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'itchyny/lightline.vim'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+#Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 filetype plugin indent on
 
@@ -130,9 +123,9 @@ let g:NERDSpaceDelims = 1
 
 
 " 设置快捷键将选中文本块复制至系统剪贴板
-vnoremap <Leader>y "+y
+#vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
-nnoremap <Leader>p "+p
+#nnoremap <Leader>p "+p
 " 定义快捷键关闭当前分割窗口
 nnoremap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
