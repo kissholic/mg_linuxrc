@@ -53,7 +53,6 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'itchyny/lightline.vim'
-#Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 filetype plugin indent on
 
@@ -76,8 +75,8 @@ set ruler
 " 开启行号显示
 set number
 " 高亮显示当前行/列
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 " 高亮显示搜索结果
 set hlsearch
 " 开启实时搜索功能
@@ -123,9 +122,9 @@ let g:NERDSpaceDelims = 1
 
 
 " 设置快捷键将选中文本块复制至系统剪贴板
-#vnoremap <Leader>y "+y
+" #vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
-#nnoremap <Leader>p "+p
+" #nnoremap <Leader>p "+p
 " 定义快捷键关闭当前分割窗口
 nnoremap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
